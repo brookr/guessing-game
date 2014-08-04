@@ -1,0 +1,76 @@
+<script>
+	//declaring starter variables
+	var answerStation = prompt("Player 1: Please pick a station on a numbered line.").toUpperCase();
+	var guessStation = prompt("Player 2: Please guess which Beijing Subway Station Player 1 picked.").toUpperCase();
+	var isCorrect = false;
+
+	//declaring functions
+	function arrayContains(lineName, station) {
+		return (lineName.indexOf(station) > -1);
+	};
+	function newGuessStation() {
+		guessStation = prompt("Please enter your new guess.").toUpperCase();
+	}
+
+	//creating arrays of subway subway lines and stations
+	var Line1 = ["PINGGUOYUAN", "GUCHENG", "BAJIAO AMUSEMENT PARK", "BABAOSHAN", "YUQUANLU", "WUKESONG", "WANSHOULU", "GONGZHUFEN", "MILITARY MUSEUM", "MUXIDI", "NANLISHILU", "FUXINGMEN", "TIAN'ANMEN WEST", "TIAN'ANMEN EAST", "WANFUJING", "DONGDAN", "JIANGUOMEN", "GUOMAO", "DAWANGLU", "SIHUI", "SIHUI EAST"];
+	var Line2 = ["XIZHIMEN", "JISHUITAN", "GULOUDAJIE", "ANDINGMEN", "YONGHEGONG LAMA TEMPLE", "DONGZHIMEN", "DONGSISHITIAO", "CHAOYANGMEN", "JIANGUOMEN", "BEIJING RAILWAY STATION", "CHONGWENMEN", "QIANMEN", "HEPINGMEN", "XUANWUMEN", "CHANCHUNJIE", "FUXINGMEN", "FUCHENGMEN", "CHEGONGZHUANG"];
+	var Line4 = ["ANHEQIAO NORTH", "BEIGONGMEN", "XIYUAN", "YUANMINGYUAN PARK", "EAST GATE OF PEKING UNIVERSITY", "ZHONGGUANCUN", "HAIDIANHUANGZHUANG", "RENMIN UNIVERSITY", "WEIGONGCUN", "NATIONAL LIBRARY", "BEIJING ZOO", "XIZHIMEN", "XINJIEKOU", "PING'ANLI", "LINGJING HUTONG", "XIDAN", "XUANWUMEN", "CAISHIKOU", "BEIJING SOUTH RAILWAY STATION", "MAJIAPU", "JIAOMEN WEST", "GONGYIXIQIAO", "XIN'GONG", "XIHONGMEN", "GAOMIDIAN NORTH", "GAOMIDIAN SOUTH", "ZAOYUAN", "GINGYUANLU", "HUANGCUNXIDAJIE", "HUANGCUN RAILWAY STATION", "YIHEZHUANG", "BIOMEDICAL BASE", "TIAN'GONGYUAN"];
+	var Line5 = ["TIANTONGYUAN NORTH", "TIANTONGYUAN", "TIANTONGYUAN SOUTH", "LISHUIQIAO", "LISHUIQIAO SOUTH", "BEIYUANLU NORTH", "DATUNLU EAST", "HUIXINXIJIE BEIKOU", "HUIXINXIJIE NANKOU", "HEPINGLI BEIJIE", "BEIXINQIAO", "DONGSI", "DENGSHIKOU", "DONGDAN", "CONGWENMEN", "CIQIKOU", "PUHUANGYU", "LIUJIAYAO", "SONGJIAZHUANG"];
+	var Line6 = ["HAIDIAN WULUJU", "CISHOUSI", "HUAYUANQIAO", "BAISHIQIAO SOUTH", "CHEGONGZHUANG WEST", "CHEGONGZHUANG", "PING'ANLI", "BEIHAI NORTH", "NANLUOGUXIANG", "DONGSI", "CHAOYANGMEN", "DONGDAQIAO", "HUJIALOU", "JINTAILU", "SHILIPU", "QINGNIANLU", "DALIANPO", "HUANGQU", "CHANGYING", "CAOFANG"];
+	var Line8 = ["HUILONGGUAN DONGDAJIE", "HUOYING", "YUXIN", "XIXIAOKOU", "YONGTAIZHUANG", "LINCUIQIAO", "SOUTH GATE OF FOREST PARK", "OLYMPIC GREEN", "OLYMPIC SPORTS CENTER", "BEITUCHENG", "ANHUAQIAO", "GULOUDAJIE"];
+	var Line9 = ["NATIONAL LIBRARY", "BAISHIQIAO SOUTH", "BAIDUIZI", "MILITARY MUSEUM", "BEIJING WEST RAILWAY STATION", "LIULIQIAO EAST", "LIULIQIAO", "QILIZHUANG", "FENGTAIDONGDAJIE", "FENGTAINANLU", "KEYILU", "FENGTAI SCIENCE PARK"];
+	var Line10 = ["HAIDIANHUANGZHUANG", "ZHICHUNLI", "ZHICHUNLU", "XITUCHENG", "MUDANYUAN", "JIANDEMEN", "BEITUCHENG", "ANZHENMEN", "HUIXINXIJIE NANKOU", "SHAOYAOJU", "TAIYANGGONG", "SANYUANQIAO", "LIANGMAQIAO", "AGRICULTURAL EXHIBITION CENTER", "TUANJIEHU", "HUJIALOU", "JINTAIXIZHAO", "GUOMAO", "SHUANGJING", "JINSONG", "PANJIAYUAN", "SHILIHE", "FENZHONGSI", "CHENGSHOUSI", "SONGJIAZHUANG", "SHILIUZHUANG", "DAHONGMEN", "JIAOMEN EAST", "JIAOMEN WEST", "CAOQIAO", "JIJIAMIAO", "SHOUJINGMAO", "FENGTAI RAILWAY STATION", "NIWA", "XIJU", "LIULIQIAO", "LIANHUAQIAO", "GONGZHUFEN", "XIDIAOYUTAI", "CISHOUSI", "CHEDAOGOU", "CHANGCHUNQIAO", "HUOQIYING", "BAGOU", "SUZHOUJIE"];
+	var Line13 = ["XIZHIMEN", "DAZHONGSI", "ZHICHUNLU", "WUDAOKOU", "SHANGDI", "XI'ERQI", "LONGZE", "HUILONGGUAN", "HUOYING", "LISHUIQIAO", "BEIYUAN", "WANGJING WEST", "SHAOYAOJU", "GUANGXIMEN", "LIUFANG", "DONGZHIMEN"];
+	var Line14 = ["ZHANGGUOZHUANG", "GARDEN EXPO PARK", "DAWAYAO", "GUOZHUANGZI", "DAJING", "QILIZHUANG"];
+	var Line15 = ["WANGJING WEST", "WANGJING", "CUIGEZHUANG", "MAQUANYING", "SUNHE", "CHINA INTERNATIONAL EXHIBITION CENTER", "HUALIKAN", "HOUSHAYU", "NANFAXIN", "SHIMEN", "SHUNYI", "FENGBO"];
+	var LineTest = ["A", "B", "C", "D"];
+
+
+	//check to see if guess matches the answer
+	while (isCorrect === false) {
+		if (answerStation === guessStation) {
+			alert("Correct!");
+			isCorrect = true;
+		} else if (arrayContains(Line1, guessStation) && arrayContains(Line1, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line2, guessStation) && arrayContains(Line2, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line4, guessStation) && arrayContains(Line4, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line5, guessStation) && arrayContains(Line5)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line6, guessStation) && arrayContains(Line6, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line8, guessStation) && arrayContains(Line8, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line9, guessStation) && arrayContains(Line9, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line10, guessStation) && arrayContains(Line10, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line13, guessStation) && arrayContains(Line13, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line14, guessStation) && arrayContains(Line14, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(Line15, guessStation) && arrayContains(Line15, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else if (arrayContains(LineTest, guessStation) && arrayContains(LineTest, answerStation)) {
+			alert("Not quite, but you're on the right subway line.");
+			newGuessStation();
+		} else {
+			alert("Nope! Keep guessing.");
+			newGuessStation();
+		}
+	};
+</script>
